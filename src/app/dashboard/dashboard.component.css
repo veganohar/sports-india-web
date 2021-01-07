@@ -1,0 +1,99 @@
+.card_data mat-icon{
+    /* float: right; */
+    font-size: 36px;
+    margin-left: -25px;
+
+}
+.count_card{
+    border-radius: 15px;
+    border: 0px solid;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
+.font-weight-500{
+    font-weight: 500;
+}
+.notification_card{
+    min-height: 100px;
+    padding: 15px;
+    border-radius: 15px;
+    width: 50%;
+}
+.notofications{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.card_info_icon mat-icon{
+    border: 1px solid #0EDE98;
+    border-radius: 50%;
+    width: 50px;
+    height: 48px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.first_circle mat-icon{
+    background-image: linear-gradient(to left bottom, #38d8a2, #5adeb0, #75e4be, #8eeacb, #a5f0d7);
+}
+.second_circle mat-icon{
+    background-image: linear-gradient(to left bottom, #ffd65a, #fdd86c, #fbdb7c, #f8dd8c, #f6df9c)    
+}
+.third_circle mat-icon{
+    background-image: linear-gradient(to left bottom, #e9918f, #e99bcb, #bbb5ff, #62d3ff, #0fe8f8);
+}
+.fourth_circle mat-icon{
+    background-image: radial-gradient(circle, #d8a38b, #daab96, #dcb2a0, #ddbaab, #dec2b6);
+}
+.fifth_circle mat-icon{
+    background-image: linear-gradient(to left bottom, #f6de03, #f6e136, #f6e450, #f6e766, #f6ea7a);
+}
+
+.seventh_circle mat-icon{
+    background-image: linear-gradient(to left bottom, #f05e5a, #d39233, #9cbb54, #55d7a5, #0fe8f8);
+}
+.eigth_circle mat-icon{
+    background-image: linear-gradient(to left bottom, #c4e9dc, #a1dfc8, #7cd5b3, #54ca9c, #14be85);
+}
+.notification_card mat-icon{
+    font-size: 50px;
+    margin-top: 12px;
+}
+
+.blinking_notification{
+    color: #FA6040;
+     animation: blink 2s ease-in infinite;
+}
+@media only screen and (min-width: 320px) and (max-width: 560px){
+    .card_data mat-icon{
+        float: right;
+        font-size: 36px;
+        margin-top: -24% !important;
+    }
+    .count_data{
+        display: flex;
+        justify-content: center;
+    }
+    .count_card{
+        width: 70%;
+    }   
+    
+    .center_align{
+        margin-left: auto;
+    }
+}
+@media only screen and (min-width: 560px) and (max-width: 768px){
+    .count_card{
+        width: 115%;
+    }
+    .tab_display{
+        display: inline-grid;
+        min-width: 50%;
+    }
+    .count_data{
+        display: inline-grid;
+        max-width: 50%;
+    }
+}

@@ -18,9 +18,7 @@
                 <input type="text" formControlName="motherName" class="form-control" placeholder="Mother's Name">
             </div>
             <div class="col-3">
-                <input placeholder="Select DOB" class="textbox-n form-control" type="text"
-                    onmouseout="(this.type='text')" onmouseover="(this.type='date')" onkeydown="event.preventDefault()"
-                    formControlName="dob">
+                <input placeholder="Select DOB" class="textbox-n form-control" type="text" onmouseout="(this.type='text')" onmouseover="(this.type='date')" onkeydown="event.preventDefault()" formControlName="dob">
             </div>
             <div class="col-3">
                 <input type="email" formControlName="email" class="form-control" placeholder="Email">
@@ -71,12 +69,12 @@
             </div>
         </div>
         <div class="mt-5" formArrayName="qualifications">
-             <div class="row">
+            <div class="row">
                 <div class="col-9">Qualifications</div>
                 <div class="col-3">
                     <button (click)="addQualification()">Add</button>
                 </div>
-             </div>
+            </div>
             <div class="row" *ngFor="let q of qualifications().controls; index as i" [formGroupName]="i" class="row">
                 <div class="col-3">
                     <input type="text" formControlName="school" class="form-control" placeholder="School">
@@ -91,7 +89,7 @@
                     <input type="text" formControlName="startYear" class="form-control" placeholder="Start Year">
                 </div>
                 <div class="col-2">
-                    <input type="text" formControlName="endYear" class="form-control"  placeholder="End Year">
+                    <input type="text" formControlName="endYear" class="form-control" placeholder="End Year">
                 </div>
                 <div class="col-1" *ngIf="i!=0">
                     <button (click)="removeQualification(i)" class="form-control">Remove</button>
@@ -135,7 +133,7 @@
             </div>
         </div>
         <div class="row justify-content-center m-5">
-            <button type="submit" [disabled]="!this.form.valid||!photoid_proof||!addressid_proof||!image" >Submit</button>
+            <button type="submit" [disabled]="!this.form.valid||!photoid_proof||!addressid_proof||!image">Submit</button>
         </div>
     </form>
 </div>

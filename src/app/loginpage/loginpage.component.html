@@ -1,0 +1,36 @@
+<div class="conatiner">
+    
+    <div class="card">
+        <div class="w-100 logo_image">
+            <img src="../../assets/login_icons.png" class="logo" alt="Logo" width="200">
+        </div>
+        <div class="login_page">
+            <h4 class="mb-3">Login Page</h4>
+            <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" class="login_form mb-5" *ngIf="loginform">
+                <mat-form-field class="example-full-width w-75">
+                    <input matInput formControlName="username" placeholder="Email/User Name">
+                    <mat-icon matSuffix>perm_identity</mat-icon>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width w-75">
+                    <input matInput formControlName="password" placeholder="Password">
+                    <mat-icon matSuffix>lock</mat-icon>
+                  </mat-form-field>
+                  <div class="text-right mr-5">
+                    <span class="sudo-danger pointer" (click)="forgetpassword()">Forget Password ?</span>
+                  </div>
+                  <div class="submit_btn mt-4">
+                      <button type="submit" class="btn login_btn">Login</button>
+                  </div>
+            </form>
+            <form class="login_form mb-5" *ngIf="forgetpassw">
+                <mat-form-field class="example-full-width w-75">
+                    <input matInput placeholder="Email">
+                    <mat-icon matSuffix>perm_identity</mat-icon>
+                </mat-form-field>
+                <div class="submit_btn mt-4">
+                    <button type="submit" class="btn login_btn" (click)="forgetpassword()">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

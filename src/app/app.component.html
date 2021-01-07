@@ -1,1 +1,53 @@
-<router-outlet></router-outlet>
+<div class="container-fluid">
+  <div class="row headerclass" *ngIf="showHeader">
+    <mat-toolbar class="toolbar">
+      <mat-toolbar-row class="header_container">
+        <div class="row col-md-12 align-items-center justify-content-between">
+          <div class="col-md-2 logo text-left">
+            <h4>logo</h4>
+          </div>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+  <div class="row appbody">
+    <div class="col-md-12 sideNavRow">
+      <mat-drawer-container class="example-container" autosize>
+        <mat-drawer #drawer class="example-sidenav" mode="side">
+          <ul class="nav flex-column margin_top">
+            <li class="nav-item" *ngFor="let item of sidenavElements" >
+              <div class="nav-link" [ngClass]="{'active':item.id==tabId}"  (click)="tabId=item.id;onSideNavClick(item);toggle(item)" >
+                <img src="{{item.src}}" class="mr-2"> <span >{{item.name}}</span>
+              </div>
+            </li>
+          </ul>
+        </mat-drawer>
+        <div class="example-sidenav-content" *ngIf="isVisible">
+          <button type="button" mat-button (click)="drawer.toggle()">
+              <mat-icon matSuffix>menu</mat-icon>
+          </button>
+        </div>
+        <router-outlet></router-outlet>
+      </mat-drawer-container>
+    </div>
+  </div>
+
+  <p-dialog header="Change Password" [(visible)]="display">
+    <form class="changepassword">
+      <div class="row col-md-12">
+        <fieldset>
+          <input placeholder="Enter Current Password" type="text" tabindex="1" required autofocus>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Enter New Password" type="text" tabindex="2" required>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Confirm Password" type="text" tabindex="3" required>
+        </fieldset>
+        <fieldset>
+          <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+        </fieldset>
+      </div>
+    </form>
+  </p-dialog>
+</div>

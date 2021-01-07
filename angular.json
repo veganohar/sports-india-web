@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sports-india-web": {
+    "aitrafficdashboard": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,18 +13,22 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/sports-india-web",
+            "outputPath": "dist/aitrafficdashboard",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": true,
+            "aot": false,
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/nova-light/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": []
           },
@@ -41,6 +45,7 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
+              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -62,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sports-india-web:build"
+            "browserTarget": "aitrafficdashboard:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sports-india-web:build:production"
+              "browserTarget": "aitrafficdashboard:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sports-india-web:build"
+            "browserTarget": "aitrafficdashboard:build"
           }
         },
         "test": {
@@ -88,6 +93,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -110,15 +116,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "sports-india-web:serve"
+            "devServerTarget": "aitrafficdashboard:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "sports-india-web:serve:production"
+              "devServerTarget": "aitrafficdashboard:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "sports-india-web"
+    }
+  },
+  "defaultProject": "aitrafficdashboard"
 }

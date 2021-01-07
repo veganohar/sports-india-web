@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormArray, FormControl, Validators, FormGroup } from '@angular/forms';
-import { SportsIndiaService } from '../shared/sportsIndia.service';
+import { SportsIndiaService } from '../sportsindia.service';
+
 
 @Component({
   selector: 'app-application',
@@ -13,10 +14,10 @@ export class ApplicationComponent implements OnInit {
   employmentTypes: any = [];
   employmentSubTypes: any = [];
   isValidPin: boolean = false;
-  photoid_proof:File;
-  addressid_proof:File;
-  image:File;
-  cv:File;
+  photoid_proof: File;
+  addressid_proof: File;
+  image: File;
+  cv: File;
   constructor(
     private sis: SportsIndiaService,
     private fb: FormBuilder
@@ -86,17 +87,17 @@ export class ApplicationComponent implements OnInit {
 
   onSubmit() {
     let formData = new FormData();
-    formData.append("image",this.image);
-    formData.append("photoid_proof",this.photoid_proof);
-    formData.append("addressid_proof",this.addressid_proof);
-    this.cv?formData.append("cv",this.cv):'';
-    formData.append("fd",JSON.stringify(this.form.value));
+    formData.append("image", this.image);
+    formData.append("photoid_proof", this.photoid_proof);
+    formData.append("addressid_proof", this.addressid_proof);
+    this.cv ? formData.append("cv", this.cv) : '';
+    formData.append("fd", JSON.stringify(this.form.value));
     // console.log(this.form.value);
     // for(let p in this.form.value){
     //   let v = p=='address'||p=='qualifications'?JSON.stringify(this.form.value[p]):this.form.value[p];
     //   formData.append(p,v);
     // }
-    this.sis.postApplication(formData).subscribe(res=>{
+    this.sis.postApplication(formData).subscribe(res => {
       console.log(res);
     })
   }
@@ -137,9 +138,9 @@ export class ApplicationComponent implements OnInit {
   }
 
 
-  onFileUpload(files:FileList, name){
+  onFileUpload(files: FileList, name) {
     let file = files[0];
-    name=="photoid_proof"?this.photoid_proof=file:name=="addressid_proof"?this.addressid_proof=file:name=="image"?this.image=file:this.cv=file;
+    name == "photoid_proof" ? this.photoid_proof = file : name == "addressid_proof" ? this.addressid_proof = file : name == "image" ? this.image = file : this.cv = file;
   }
 }
 
