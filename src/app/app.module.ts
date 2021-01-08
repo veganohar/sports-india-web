@@ -36,6 +36,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import {AccordionModule} from 'primeng/accordion';
 import {FieldsetModule} from 'primeng/fieldset';
 import { CookieService } from 'ngx-cookie-service';
+import {PaginatorModule} from 'primeng/paginator';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
@@ -78,6 +79,7 @@ import { ApplicationComponent } from './application/application.component';
 import { SubtypesComponent } from './subtypes/subtypes.component';
 import { JwtInterceptor } from './jwt.interceptor';
 import { ErrorInterceptor } from './error.interceptor';
+import { ViewApplicationComponent } from './view-application/view-application.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +87,9 @@ import { ErrorInterceptor } from './error.interceptor';
     LoginpageComponent,
     DashboardComponent,
     ApplicationComponent,
-    SubtypesComponent
+    SubtypesComponent,
+    ViewApplicationComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -154,7 +158,8 @@ import { ErrorInterceptor } from './error.interceptor';
     FormsModule,
     ReactiveFormsModule,
     AccordionModule,
-    FieldsetModule
+    FieldsetModule,
+    PaginatorModule
   ],
   providers: [CookieService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

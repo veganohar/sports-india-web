@@ -10,6 +10,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
                const isApiUrl = request.url.startsWith(environment.baseUrl);
+               console.log(isApiUrl);
         if (this.cs.checkCookie("accessToken") && isApiUrl) {
             request = request.clone({
                 setHeaders: {

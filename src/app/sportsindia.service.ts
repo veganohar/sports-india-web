@@ -82,4 +82,21 @@ export class SportsIndiaService {
     let headers = this.postHeaders();
     return this.http.post(url, data, { headers: headers });
   }
+  getApplicationsCount(){
+    let url = `${this.baseUrl}applications/getCount`
+    return this.http.get(url);
+  }
+  getApplications(s,l){
+    let url = `${this.baseUrl}applications/getApplications/${s}/${l}`
+    return this.http.get(url);
+  }
+  getApplicationById(id){
+    let url = `${this.baseUrl}applications/getApplicationById/${id}`
+    return this.http.get(url);
+  }
+  updateApplication(data){
+    let url = `${this.baseUrl}applications/updateApplication`;
+    let headers = this.postHeaders();
+    return this.http.put(url, data, { headers: headers });
+  }
 }
