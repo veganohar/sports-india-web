@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { CookiesService } from './cookie.service';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +10,22 @@ import { environment } from 'src/environments/environment';
 export class SportsIndiaService {
 
   baseUrl = environment.baseUrl;
-  constructor(private http: HttpClient) { }
+
+  onErrorInterceptor$: Subject<any> = new BehaviorSubject<any>(null);
+  emitErrorInterceptor(value: boolean) {
+    this.onErrorInterceptor$.next(value);
+  }
+  get showErrorInterceptor(): BehaviorSubject<any> {
+    return (this.onErrorInterceptor$ as BehaviorSubject<any>);
+  }
+
+  constructor(private http: HttpClient,
+    private cs: CookiesService
+  ) { }
   postHeaders() {
     let headers = new HttpHeaders();
     headers.append("Content-Type", "application/json");
     headers.append("Accept", "application/json");
-    // headers.append("Access-Control-Allow-Origin","*");
     return headers;
   }
 
@@ -39,4 +51,30 @@ export class SportsIndiaService {
     return this.http.post(url, data, { headers: headers });
   }
 
+  singin(creds) {
+    let url = `${this.baseUrl}users/signin`;
+    let headers = this.postHeaders();
+    return this.http.post(url, creds, { headers: headers });
+  }
+
+  changePW(data) {
+    let url = `${this.baseUrl}users/changePassword`;
+    let headers = this.postHeaders();
+    return this.http.post(url, data, { headers: headers });
+  }
+
+  createEmpSubType(data) {
+    let url = `${this.baseUrl}employmentsubtypes/createEmploymentSubType`;
+    let headers = this.postHeaders();
+    return this.http.post(url, data, { headers: headers });
+  }
+  updateEmpSubType(data) {
+    let url = `${this.baseUrl}employmentsubtypes/updateEmploymentSubType`;
+    let headers = this.postHeaders();
+    return this.http.put(url, data, { headers: headers });
+  }
+  getAllEmpSubTypes() {
+    let url = `${this.baseUrl}employmentsubtypes/getAllEmploymentSubTypes`
+    return this.http.get(url);
+  }
 }

@@ -16,7 +16,7 @@
         <mat-drawer #drawer class="example-sidenav" mode="side">
           <ul class="nav flex-column margin_top">
             <li class="nav-item" *ngFor="let item of sidenavElements" >
-              <div class="nav-link" [ngClass]="{'active':item.id==tabId}"  (click)="tabId=item.id;onSideNavClick(item);toggle(item)" >
+              <div class="nav-link" [ngClass]="{'active':item.id==tabId}"  (click)="onSideNavClick(item);toggle(item)" >
                 <img src="{{item.src}}" class="mr-2"> <span >{{item.name}}</span>
               </div>
             </li>
@@ -33,19 +33,19 @@
   </div>
 
   <p-dialog header="Change Password" [(visible)]="display">
-    <form class="changepassword">
+    <form class="changepassword" [formGroup]="changePwForm" *ngIf="display" (ngSubmit)="onChangePw()">
       <div class="row col-md-12">
         <fieldset>
-          <input placeholder="Enter Current Password" type="text" tabindex="1" required autofocus>
+          <input placeholder="Enter Current Password" formControlName="oldPassword" type="text" tabindex="1" autofocus>
         </fieldset>
         <fieldset>
-          <input placeholder="Enter New Password" type="text" tabindex="2" required>
+          <input placeholder="Enter New Password" type="text" formControlName="newPassword" tabindex="2">
         </fieldset>
         <fieldset>
-          <input placeholder="Confirm Password" type="text" tabindex="3" required>
+          <input placeholder="Confirm Password" type="text" tabindex="3" formControlName="confirmPassword">
         </fieldset>
         <fieldset>
-          <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+          <button name="submit" type="submit" id="contact-submit" data-submit="...Sending" >Submit</button>
         </fieldset>
       </div>
     </form>

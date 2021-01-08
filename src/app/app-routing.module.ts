@@ -11,7 +11,7 @@ const routes: Routes = [
   {path:"login",component:LoginpageComponent},
   {path:"dashboard",component:DashboardComponent,canActivate:[AuthGuard]},
   { path:"application", component: ApplicationComponent},
-  { path: "subtype", component: SubtypesComponent}
+  { path: "subtype", component: SubtypesComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

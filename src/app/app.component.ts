@@ -2,17 +2,20 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material';
 import { Router } from '@angular/router';
 import { SidenavService } from './sidenav.service';
-import { trigger, transition, animate, style } from "@angular/animations";
+import { CookiesService } from './cookie.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { SportsIndiaService } from './sportsindia.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   innerwidth: any;
-  onResize(event){
-    this.innerwidth = event.target.innerwidth;  
+  onResize(event) {
+    this.innerwidth = event.target.innerwidth;
   }
   title = 'Sports-india';
   screenWidth: any;
@@ -21,12 +24,16 @@ export class AppComponent {
   sidenavElements: any = [];
   tabId = 0;
   isVisible: boolean = false;
-  childVisible: boolean = false;
-  childId: any;
   show: boolean = false;
   display: boolean = false;
+  changePwForm: FormGroup;
   @ViewChild('drawer', { static: true }) public sidenav: MatDrawer;
-  constructor(public sidenavservice: SidenavService, private router: Router) {
+  constructor(public sidenavservice: SidenavService,
+    private router: Router,
+    private cs: CookiesService,
+    private fb: FormBuilder,
+    private sis:SportsIndiaService
+  ) {
     this.sidenavservice.showSideNav.subscribe(val => {
       this.showHeader = val;
       if (val) {
@@ -34,82 +41,100 @@ export class AppComponent {
         this.sidenav.open();
       }
     });
+    this.sis.showErrorInterceptor.subscribe(val=>{
+      if(val){
+        this.onLogOut();
+      }
+    })
   }
 
-  ngOnInit(){
-    if(localStorage.getItem('isLogin')=='true'){
+  ngOnInit() {
+    if (this.cs.checkCookie('accessToken')) {
       this.showHeader = true;
       this.loadSideNavEle();
       this.sidenav.open();
-      this.tabId = localStorage.getItem('tabId')?parseInt(localStorage.getItem('tabId')):0;
-    }else{
+      this.tabId = this.cs.getCookie("tabId") ? parseInt(this.cs.getCookie("tabId")) : 0;
+    } else {
       this.sidenav.close();
       this.showHeader = false;
     }
     this.innerwidth = window.screen.width;
-    console.log();
-    if(this.innerwidth >= '768'){
+    if (this.innerwidth >= '768') {
       this.isVisible = false;
-      this.sidenav.open();
-    }else{
+      // this.sidenav.open();
+    } else {
       this.isVisible = true;
       this.sidenav.close();
     }
     console.log(this.innerwidth);
+    
   }
 
+  initiateChangePwForm() {
+    this.changePwForm = this.fb.group({
+      oldPassword:['',Validators.required],
+      newPassword:['',Validators.required],
+      confirmPassword:['',Validators.required]
+    })
+  }
 
   loadSideNavEle() {
-      this.sidenavElements = [
-        { id: 1, name: 'Dashboard', routerLink: "/dashboard", src: "../assets/dashboard2.png"},
-        { id: 2, name: 'Add Subtypes', routerLink: "/subtype", src: "../assets/orders2.png" },
-        { id: 3, name: 'Change Password', routerLink: "/", src: "../assets/filters2.png" },
-        { id: 4, name: 'Logout', routerLink: "/", src:"../assets/srvnitem2.png"}
-      ];
+    this.sidenavElements = [
+      { id: 0, name: 'Dashboard', routerLink: "/dashboard", src: "../assets/dashboard2.png" },
+      { id: 1, name: 'Add Subtypes', routerLink: "/subtype", src: "../assets/orders2.png" },
+      { id: 2, name: 'Change Password', routerLink: "/", src: "../assets/filters2.png" },
+      { id: 3, name: 'Logout', routerLink: "/", src: "../assets/srvnitem2.png" }
+    ];
   }
-  onSubMenuClick(item,child,value){
-    this.tabId = item.id;
-    child ? this.childId = child.id : this.childId = null;
-    child.routerLink = child ? child.routerLink : item.routerLink;
-    this.router.navigate([child.routerLink])
-    // if(item.childern || value == '1'){
-    //   this.childVisible = true;
-    // }
-  }
-  toggle(item){ 
-     this.show = !this.show;
-    if(this.show && item.childern && item.name != 'Logout'){
-      console.log(this.show);
-      this.childVisible = true;
-    }else{
+ 
+  toggle(item) {
+    this.show = !this.show;
+    if (this.show  && item.name != 'Logout') {
+    } else {
       this.show = false;
-      this.childVisible = false;
     }
   }
-  onSideNavClick(item,value?) {
-    console.log(item);
-    if(item.id == 3){
-      this.display = true
-    }
-    if (item.name != 'Logout') {
-      item.childern ? this.childVisible = true : this.childVisible = false;
-      this.childId = null;
+  onSideNavClick(item, value?) {
+    if(item.id==0 || item.id==1){
       this.router.navigate([item.routerLink]);
       this.tabId = item.id;
-      localStorage.setItem('tabId', String(this.tabId));
-    } else {
+      this.cs.setCookie("tabId", this.tabId, parseInt(this.cs.getCookie('exp')));
+    }else if(item.id == 2){
+      this.initiateChangePwForm();
+      this.display = true;
+    }
+    else {
       this.onLogOut();
     }
 
   }
 
 
-  onLogOut(){
+  onLogOut() {
     this.showHeader = false;
     this.tabId = 0;
     this.sidenav.close();
-    localStorage.clear();
     this.router.navigate(['/login']);
+    this.cs.deleteAllCookies();
+
+  }
+
+  onChangePw() {
+    if(this.changePwForm.invalid){
+      alert("Fill all the fields");
+      return;
+    }
+    let fd = this.changePwForm.value;
+    if(fd.newPassword!=fd.confirmPassword){
+      alert("New Password and Confirm Passwords should be matched");
+      return;
+    }
+    this.sis.changePW(fd).subscribe(res=>{
+      alert(res);
+      this.display =false;
+    },(err)=>{
+      alert(err);
+    })
   }
 
 }

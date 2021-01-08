@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
@@ -34,6 +35,7 @@ import { SliderModule } from 'primeng/slider';
 import { CheckboxModule } from 'primeng/checkbox';
 import {AccordionModule} from 'primeng/accordion';
 import {FieldsetModule} from 'primeng/fieldset';
+import { CookieService } from 'ngx-cookie-service';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
@@ -74,6 +76,9 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { MatTableModule } from '@angular/material';
 import { ApplicationComponent } from './application/application.component';
 import { SubtypesComponent } from './subtypes/subtypes.component';
+import { JwtInterceptor } from './jwt.interceptor';
+import { ErrorInterceptor } from './error.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -151,7 +156,9 @@ import { SubtypesComponent } from './subtypes/subtypes.component';
     AccordionModule,
     FieldsetModule
   ],
-  providers: [],
+  providers: [CookieService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }, ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
