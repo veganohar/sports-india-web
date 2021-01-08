@@ -130,7 +130,7 @@ export class AppComponent implements OnInit {
       return;
     }
     this.sis.changePW(fd).subscribe(res=>{
-      alert(res);
+      alert("Password Changed Successfully");
       this.display =false;
     },(err)=>{
       alert(err);

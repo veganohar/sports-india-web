@@ -77,4 +77,9 @@ export class SportsIndiaService {
     let url = `${this.baseUrl}employmentsubtypes/getAllEmploymentSubTypes`
     return this.http.get(url);
   }
+  resetPW(data){
+    let url = `${this.baseUrl}users/resetPassword`;
+    let headers = this.postHeaders();
+    return this.http.post(url, data, { headers: headers });
+  }
 }

@@ -205,6 +205,7 @@ ul li{
 .changepassword input[type="email"],
 .changepassword input[type="tel"],
 .changepassword input[type="url"],
+.changepassword input[type="password"],
 .changepassword textarea {
   font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
   width: 100%;
@@ -217,6 +218,7 @@ ul li{
 .changepassword input[type="email"]:hover,
 .changepassword input[type="tel"]:hover,
 .changepassword input[type="url"]:hover,
+.changepassword input[type="password"]:hover,
 .changepassword textarea:hover {
   -webkit-transition: border-color 0.3s ease-in-out;
   -moz-transition: border-color 0.3s ease-in-out;

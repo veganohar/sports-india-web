@@ -6,13 +6,13 @@
         </div>
         <div class="login_page">
             <h4 class="mb-3">Login Page</h4>
-            <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" class="login_form mb-5" *ngIf="loginform">
+            <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" class="login_form mb-5" *ngIf="!forgetpassw">
                 <mat-form-field class="example-full-width w-75">
                     <input matInput formControlName="username" placeholder="Email/User Name">
                     <mat-icon matSuffix>perm_identity</mat-icon>
                   </mat-form-field>
                   <mat-form-field class="example-full-width w-75">
-                    <input matInput formControlName="password" placeholder="Password">
+                    <input matInput formControlName="password" type="password" placeholder="Password">
                     <mat-icon matSuffix>lock</mat-icon>
                   </mat-form-field>
                   <div class="text-right mr-5">
@@ -22,13 +22,16 @@
                       <button type="submit" class="btn login_btn">Login</button>
                   </div>
             </form>
-            <form class="login_form mb-5" *ngIf="forgetpassw">
+            <form class="login_form mb-5" *ngIf="forgetpassw" [formGroup]="resetPwForm" (ngSubmit)="onResetPW(resetPwForm.value)">
                 <mat-form-field class="example-full-width w-75">
-                    <input matInput placeholder="Email">
+                    <input matInput placeholder="Email" formControlName="email">
                     <mat-icon matSuffix>perm_identity</mat-icon>
                 </mat-form-field>
+                <div class="text-right mr-5">
+                    <span class="sudo-primary pointer" (click)="forgetpassword()">Remember Password?</span>
+                  </div>
                 <div class="submit_btn mt-4">
-                    <button type="submit" class="btn login_btn" (click)="forgetpassword()">Send</button>
+                    <button type="submit" class="btn login_btn" [disabled]="resetPwForm.invalid" >Send</button>
                 </div>
             </form>
         </div>

@@ -12,44 +12,63 @@ import { SportsIndiaService } from '../sportsindia.service';
 })
 export class LoginpageComponent implements OnInit {
   loginForm: FormGroup;
-  loginform: boolean = true;
   forgetpassw: boolean = false;
+  resetPwForm:FormGroup;
   constructor(public sidenavservice: SidenavService,
     private fb: FormBuilder,
     private router: Router,
     private sis: SportsIndiaService,
     private cs: CookiesService,
-    public sidenavService:SidenavService
+    public sidenavService: SidenavService
   ) { }
 
   ngOnInit() {
     if (this.cs.checkCookie("accessToken")) {
       this.router.navigate(['/dashboard']);
     }
-    this.initiateForm();
+    this.initiateLoginForm();
+    this.initiatePWResetForm();
   }
 
-  initiateForm() {
+  initiateLoginForm() {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
 
+initiatePWResetForm(){
+  this.resetPwForm = this.fb.group({
+    email:['',Validators.required]
+  })
+}
+
 
   login(fd) {
-this.sis.singin(fd).subscribe(res=>{
-  let resp:any = res;
-  this.cs.setCookie( 'accessToken', resp.accessToken, resp.exp );
-  this.cs.setCookie("exp",resp.exp,resp.exp);
-this.sidenavservice.emitShowSideNav(true);
-  this.router.navigate(['/dashboard']);
-},(err)=>{
-  alert(err);
-});
+    this.sis.singin(fd).subscribe(res => {
+      let resp: any = res;
+      this.cs.setCookie('accessToken', resp.accessToken, resp.exp);
+      this.cs.setCookie("exp", resp.exp, resp.exp);
+      this.sidenavservice.emitShowSideNav(true);
+      this.router.navigate(['/dashboard']);
+    }, (err) => {
+      alert(err);
+    });
   }
   forgetpassword() {
-    this.loginform = !this.loginform;
     this.forgetpassw = !this.forgetpassw;
+    this.initiateLoginForm();
+    this.initiatePWResetForm();
+  }
+  onResetPW(fd){
+    this.sis.resetPW(fd).subscribe(res=>{
+      console.log(res);
+      let resp:any = res;
+      this.forgetpassword();
+      alert(resp.message);
+    },(err)=>{
+      console.log(err);
+      alert(err);
+    })
   }
 }
