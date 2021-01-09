@@ -5,6 +5,9 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2),
     0 3px 3px 0 rgba(0, 0, 0, 0.24);
 }
+.application select{
+  padding: 0px 10px !important;
+}
 .application input[type="text"],
 .application input[type="email"],
 .application input[type="date"],

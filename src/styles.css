@@ -40,3 +40,6 @@ h5{
     width: 60px;
     background-color: #f63854;
 }
+.cust-padding input{
+    padding: 5px !important;
+}

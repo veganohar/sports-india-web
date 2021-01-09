@@ -1,14 +1,13 @@
 <div class="container-fluid mt-3">
     <div class="row justify-content-center">
         <h4 class="mb-3 text-center">Registration Form</h4>
-        <span class="shape"></span>
     </div>
     <div class="row">
         <div class="col-md-12">
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div class="card application">
                     <h5 class="text-left mb-3">Personal Information</h5>
-                    <div class="row">
+                    <div class="row align-items-center">
                         <div class="col-md-3 col-sm-12 col-xs-12">
                             <label>First Name <span class="text-danger">*</span></label>
                         </div>
@@ -112,76 +111,77 @@
                                 </select>
                             </fieldset>
                         </div>
-                        <div formGroupName="address" class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-3 col-sm-12 col-xs-12">
-                                    <label>Pincode <span class="text-danger">*</span></label>
-                                </div>
-                                <div class="col-md-3 col-sm-12 col-xs-12">
-                                    <fieldset>
-                                        <input type="number" formControlName="pin" class="form-control" placeholder="" (keyup)="onPin($event)">
-                                    </fieldset>
-                                </div>
-
-                                <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
-                                    <label>State <span class="text-danger"></span></label>
-                                </div>
-                                <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
-                                    <fieldset>
-                                        <input type="text" readonly formControlName="state" class="form-control" placeholder="">
-                                    </fieldset>
-                                </div>
-
-                                <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
-                                    <label>District <span class="text-danger"></span></label>
-                                </div>
-                                <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
-                                    <fieldset>
-                                        <input type="text" readonly formControlName="district" class="form-control" placeholder="">
-                                    </fieldset>
-                                </div>
-
-                                <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
-                                    <label>Circle <span class="text-danger"></span></label>
-                                </div>
-                                <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
-                                    <fieldset>
-                                        <input type="text" readonly formControlName="circle" class="form-control" placeholder="">
-                                    </fieldset>
-                                </div>
-
-                                <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
-                                    <label>Address Line 1 <span class="text-danger"></span></label>
-                                </div>
-                                <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
-                                    <fieldset>
-                                        <input type="text" formControlName="line1" class="form-control" placeholder="">
-                                    </fieldset>
-                                </div>
-
-                                <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
-                                    <label>Address Line 2 <span class="text-danger"></span></label>
-                                </div>
-                                <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
-                                    <fieldset>
-                                        <input type="text" formControlName="line2" class="form-control" placeholder="">
-                                    </fieldset>
-                                </div>
-
-                                <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
-                                    <label>Landmark <span class="text-danger"></span></label>
-                                </div>
-                                <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
-                                    <fieldset>
-                                        <input type="text" formControlName="landMark" class="form-control" placeholder="">
-                                    </fieldset>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
-
+                <div class="card application">
+                    <h5 class="text-left mb-3">Address Info</h5>
+                    <div formGroupName="address" class="col-md-12">
+                        <div class="row align-items-center">
+                            <div class="col-md-3 col-sm-12 col-xs-12">
+                                <label>Pincode <span class="text-danger">*</span></label>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12">
+                                <fieldset>
+                                    <input type="number" formControlName="pin" class="form-control" placeholder="" (keyup)="onPin($event)">
+                                </fieldset>
+                            </div>
+                
+                            <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
+                                <label>State <span class="text-danger"></span></label>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
+                                <fieldset>
+                                    <input type="text" readonly formControlName="state" class="form-control" placeholder="">
+                                </fieldset>
+                            </div>
+                
+                            <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
+                                <label>District <span class="text-danger"></span></label>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
+                                <fieldset>
+                                    <input type="text" readonly formControlName="district" class="form-control" placeholder="">
+                                </fieldset>
+                            </div>
+                
+                            <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
+                                <label>Circle <span class="text-danger"></span></label>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
+                                <fieldset>
+                                    <input type="text" readonly formControlName="circle" class="form-control" placeholder="">
+                                </fieldset>
+                            </div>
+                
+                            <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
+                                <label>Address Line 1 <span class="text-danger"></span></label>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
+                                <fieldset>
+                                    <input type="text" formControlName="line1" class="form-control" placeholder="">
+                                </fieldset>
+                            </div>
+                
+                            <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
+                                <label>Address Line 2 <span class="text-danger"></span></label>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
+                                <fieldset>
+                                    <input type="text" formControlName="line2" class="form-control" placeholder="">
+                                </fieldset>
+                            </div>
+                
+                            <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
+                                <label>Landmark <span class="text-danger"></span></label>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
+                                <fieldset>
+                                    <input type="text" formControlName="landMark" class="form-control" placeholder="">
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="card application">
                     <div class="row">
                         <div formArrayName="qualifications" class="col-md-12">
@@ -217,45 +217,43 @@
                         </div>
                     </div>
                 </div>
-                <div class="card application">
-                    <div class="row col-md-12 align-items-baseline">
-                        <div class="col-md-3 mt-auto">
-                            <label> Photo Id</label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="text" formControlName="photoid_proof" class="form-control" placeholder="Photoid Proof">
-                        </div>
-                        <div class="col-md-3 mt-auto">
-                            <input type="file" class="form-control" accept='image/*' (change)="onFileUpload($event.target.files,'photoid_proof')">
-                        </div>
-                    </div>
-                </div>
 
                 <div class="card application">
-                    <div class="row col-md-12 align-items-baseline">
-                        <div class="col-md-3 mt-auto">
+                    <h5 class="text-left mb-3">ID proofs</h5>
+                    <div class="row col-md-12 align-items-center">
+                        <div class="col-md-2">
+                            <label> Photo Id</label>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" formControlName="photoid_proof" class="form-control" placeholder="Photoid Proof">
+                        </div>
+                        <div class="col-md-2 cust-padding">
+                            <input type="file" class="form-control" accept='image/*' (change)="onFileUpload($event.target.files,'photoid_proof')">
+                        </div>
+
+                        <div class="col-md-2">
                             <label> Address Id</label>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <input type="text" formControlName="addressid_proof" class="form-control" placeholder="AddressId Proof">
                         </div>
-                        <div class="col-md-3 mt-auto">
+                        <div class="col-md-2 cust-padding">
                             <input type="file" class="form-control" accept='image/*' (change)="onFileUpload($event.target.files,'addressid_proof')">
                         </div>
                     </div>
                 </div>
                 <div class="card application">
-                    <div class="row col-md-12 align-items-baseline">
+                    <div class="row col-md-12 align-items-center">
                         <div class="col-md-3">
                             <label>Image</label>
                         </div>
-                        <div class="col-md-3 mt-auto">
+                        <div class="col-md-3 cust-padding">
                             <input type="file" class="form-control" accept='image/*' (change)="onFileUpload($event.target.files,'image')">
                         </div>
                         <div class="col-md-3">
                             <label>CV</label>
                         </div>
-                        <div class="col-md-3 mt-auto">
+                        <div class="col-md-3 cust-padding">
                             <input type="file" class="form-control" accept=".doc, .docx,.pdf" (change)="onFileUpload($event.target.files,'cv')">
                         </div>
                     </div>
