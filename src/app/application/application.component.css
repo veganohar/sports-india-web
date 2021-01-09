@@ -97,9 +97,9 @@ fieldset {
 .app button[type="reset"] {
   cursor: pointer;
   border: none;
-  border: 1px solid #4CAF50;
+  border: 1px solid red;
   background:#FFF;
-  color: #4CAF50;
+  color: red;
   margin: 0 0 5px;
   padding: 10px;
   font-size: 15px;
