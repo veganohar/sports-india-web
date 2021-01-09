@@ -18,6 +18,7 @@ export class ApplicationComponent implements OnInit {
   addressid_proof: File;
   image: File;
   cv: File;
+  idProofs:any=[];
   constructor(
     private sis: SportsIndiaService,
     private fb: FormBuilder
@@ -25,6 +26,7 @@ export class ApplicationComponent implements OnInit {
 
   ngOnInit(): void {
     this.hqsdd = ["Primary School", "SSC", "Intermediate", "Bachelor's degree", "Master's degree", "Doctorate or higher"];
+    this.idProofs = ["Adhar Card","Drivng License","PAN Card", "Passport","Voter Id Card"]
     this.initiateForm();
     this.getAllEmploymentTypes();
   }
@@ -92,14 +94,15 @@ export class ApplicationComponent implements OnInit {
     formData.append("addressid_proof", this.addressid_proof);
     this.cv ? formData.append("cv", this.cv) : '';
     formData.append("fd", JSON.stringify(this.form.value));
-    // console.log(this.form.value);
-    // for(let p in this.form.value){
-    //   let v = p=='address'||p=='qualifications'?JSON.stringify(this.form.value[p]):this.form.value[p];
-    //   formData.append(p,v);
-    // }
     this.sis.postApplication(formData).subscribe(res => {
       console.log(res);
       this.form.reset();
+      this.isValidPin = false;
+      this.employmentSubTypes=[];
+      this.image = null;
+      this.photoid_proof = null;
+      this.addressid_proof = null;
+      this.cv = null;
     },(err)=>{
       console.log(err)
     })

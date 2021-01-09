@@ -57,7 +57,8 @@
                         </div>
                         <div class="col-md-3 col-sm-12 col-xs-12">
                             <fieldset>
-                                <input placeholder="Select DOB" class="textbox-n form-control" type="date" formControlName="dob">
+                                <input placeholder="Select DOB" class="textbox-n form-control" type="date"
+                                    formControlName="dob">
                             </fieldset>
                         </div>
                         <div class="col-md-3 col-sm-12 col-xs-12">
@@ -100,10 +101,10 @@
                             </fieldset>
                         </div>
 
-                        <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="employmentSubTypes.length>0">
                             <label>Select Emplopyment Sub Type<span class="text-danger">*</span></label>
                         </div>
-                        <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="employmentSubTypes.length>0">
                             <fieldset>
                                 <select class="form-control" formControlName="employmentsubtype">
                                     <option value="" disabled selected>Select Emplopyment Sub Type</option>
@@ -122,37 +123,41 @@
                             </div>
                             <div class="col-md-3 col-sm-12 col-xs-12">
                                 <fieldset>
-                                    <input type="number" formControlName="pin" class="form-control" placeholder="" (keyup)="onPin($event)">
+                                    <input type="number" formControlName="pin" class="form-control" placeholder=""
+                                        (keyup)="onPin($event)">
                                 </fieldset>
                             </div>
-                
+
                             <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
                                 <label>State <span class="text-danger"></span></label>
                             </div>
                             <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
                                 <fieldset>
-                                    <input type="text" readonly formControlName="state" class="form-control" placeholder="">
+                                    <input type="text" readonly formControlName="state" class="form-control"
+                                        placeholder="">
                                 </fieldset>
                             </div>
-                
+
                             <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
                                 <label>District <span class="text-danger"></span></label>
                             </div>
                             <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
                                 <fieldset>
-                                    <input type="text" readonly formControlName="district" class="form-control" placeholder="">
+                                    <input type="text" readonly formControlName="district" class="form-control"
+                                        placeholder="">
                                 </fieldset>
                             </div>
-                
+
                             <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
                                 <label>Circle <span class="text-danger"></span></label>
                             </div>
                             <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
                                 <fieldset>
-                                    <input type="text" readonly formControlName="circle" class="form-control" placeholder="">
+                                    <input type="text" readonly formControlName="circle" class="form-control"
+                                        placeholder="">
                                 </fieldset>
                             </div>
-                
+
                             <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
                                 <label>Address Line 1 <span class="text-danger"></span></label>
                             </div>
@@ -161,7 +166,7 @@
                                     <input type="text" formControlName="line1" class="form-control" placeholder="">
                                 </fieldset>
                             </div>
-                
+
                             <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
                                 <label>Address Line 2 <span class="text-danger"></span></label>
                             </div>
@@ -170,7 +175,7 @@
                                     <input type="text" formControlName="line2" class="form-control" placeholder="">
                                 </fieldset>
                             </div>
-                
+
                             <div class="col-md-3 col-sm-12 col-xs-12" *ngIf="isValidPin">
                                 <label>Landmark <span class="text-danger"></span></label>
                             </div>
@@ -194,19 +199,24 @@
                             <div *ngFor="let q of qualifications().controls; index as i" [formGroupName]="i">
                                 <div class="row col-md-12">
                                     <div class="col-3">
-                                        <input type="text" formControlName="school" class="form-control" placeholder="School">
+                                        <input type="text" formControlName="school" class="form-control"
+                                            placeholder="School">
                                     </div>
                                     <div class="col-2">
-                                        <input type="text" formControlName="degree" class="form-control" placeholder="Degree">
+                                        <input type="text" formControlName="degree" class="form-control"
+                                            placeholder="Degree">
                                     </div>
                                     <div class="col-2">
-                                        <input type="text" formControlName="field" class="form-control" placeholder="Field">
+                                        <input type="text" formControlName="field" class="form-control"
+                                            placeholder="Field">
                                     </div>
                                     <div class="col-2">
-                                        <input type="text" formControlName="startYear" class="form-control" placeholder="Start Year">
+                                        <input type="text" formControlName="startYear" class="form-control"
+                                            placeholder="Start Year">
                                     </div>
                                     <div class="col-2">
-                                        <input type="text" formControlName="endYear" class="form-control" placeholder="End Year">
+                                        <input type="text" formControlName="endYear" class="form-control"
+                                            placeholder="End Year">
                                     </div>
                                     <div class="col-1" *ngIf="i!=0">
                                         <mat-icon (click)="removeQualification(i)" class="pointer">close</mat-icon>
@@ -225,20 +235,28 @@
                             <label> Photo Id</label>
                         </div>
                         <div class="col-md-2">
-                            <input type="text" formControlName="photoid_proof" class="form-control" placeholder="Photoid Proof">
+                            <select formControlName="photoid_proof" class="form-control">
+                                <option value="" disabled selected>Select an ID Proof</option>
+                                <option *ngFor="let e of idProofs" [disabled]="e==form.value.addressid_proof" [value]=e>{{e}}</option>
+                            </select>
                         </div>
                         <div class="col-md-2 cust-padding">
-                            <input type="file" class="form-control" accept='image/*' (change)="onFileUpload($event.target.files,'photoid_proof')">
+                            <input type="file" class="form-control" accept='image/*'
+                                (change)="onFileUpload($event.target.files,'photoid_proof')">
                         </div>
 
                         <div class="col-md-2">
                             <label> Address Id</label>
                         </div>
                         <div class="col-md-2">
-                            <input type="text" formControlName="addressid_proof" class="form-control" placeholder="AddressId Proof">
+                                <select formControlName="addressid_proof" class="form-control">
+                                    <option value="" disabled selected>Select an ID Proof</option>
+                                    <option *ngFor="let e of idProofs" [disabled]="e==form.value.photoid_proof" [value]=e>{{e}}</option>
+                                </select>
                         </div>
                         <div class="col-md-2 cust-padding">
-                            <input type="file" class="form-control" accept='image/*' (change)="onFileUpload($event.target.files,'addressid_proof')">
+                            <input type="file" class="form-control" accept='image/*'
+                                (change)="onFileUpload($event.target.files,'addressid_proof')">
                         </div>
                     </div>
                 </div>
@@ -248,18 +266,21 @@
                             <label>Image</label>
                         </div>
                         <div class="col-md-3 cust-padding">
-                            <input type="file" class="form-control" accept='image/*' (change)="onFileUpload($event.target.files,'image')">
+                            <input type="file" class="form-control" accept='image/*'
+                                (change)="onFileUpload($event.target.files,'image')">
                         </div>
                         <div class="col-md-3">
                             <label>CV</label>
                         </div>
                         <div class="col-md-3 cust-padding">
-                            <input type="file" class="form-control" accept=".doc, .docx,.pdf" (change)="onFileUpload($event.target.files,'cv')">
+                            <input type="file" class="form-control" accept=".doc, .docx,.pdf"
+                                (change)="onFileUpload($event.target.files,'cv')">
                         </div>
                     </div>
                 </div>
                 <div class="row justify-content-center m-5 app">
-                    <button type="submit" [disabled]="!this.form.valid||!photoid_proof||!addressid_proof||!image">Submit</button>
+                    <button type="submit"
+                        [disabled]="!this.form.valid||!photoid_proof||!addressid_proof||!image">Submit</button>
                     <button type="reset" class="ml-3">Cancel</button>
                 </div>
             </form>
