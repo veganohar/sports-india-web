@@ -1,0 +1,118 @@
+.application{
+    background: #F9F9F9;
+    padding: 25px;
+    margin: 15px 0;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2),
+    0 3px 3px 0 rgba(0, 0, 0, 0.24);
+}
+.application input[type="text"],
+.application input[type="email"],
+.application input[type="date"],
+.application input[type="number"],
+.application input[type="tel"],
+.application input[type="url"],
+.application textarea,
+.application input,
+.application select {
+  font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
+  width: 100%;
+  border: 1px solid #ccc;
+  background: #FFF;
+  margin: 0 0 5px;
+  padding: 10px;
+}
+
+
+.application input[type="text"]:hover,
+.application input[type="email"]:hover,
+.application input[type="date"]:hover,
+.application input[type="number"]:hover,
+.application input[type="tel"]:hover,
+.application input[type="url"]:hover,
+.application textarea:hover,
+.application input:hover,
+.application select:hover {
+  -webkit-transition: border-color 0.3s ease-in-out;
+  -moz-transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
+  border: 1px solid #aaa;
+}
+
+.application input:focus,
+.application textarea:focus,
+.application select:focus {
+  outline: 0;
+  border: 1px solid #aaa;
+}
+
+::-webkit-input-placeholder {
+  color: #888;
+}
+
+:-moz-placeholder {
+  color: #888;
+}
+
+::-moz-placeholder {
+  color: #888;
+}
+
+:-ms-input-placeholder {
+  color: #888;
+}
+
+fieldset {
+  border: medium none !important;
+  margin: 0 0 10px;
+  min-width: 100%;
+  padding: 0;
+  width: 100%;
+}
+.application .add{
+  cursor: pointer;
+  padding: 5px 30px !important;
+  border: none;
+  background: #4CAF50;
+  color: #FFF;
+  margin: 10px;
+  padding: 10px;
+  font-size: 15px;
+}
+.app button[type="submit"],
+.app button[type="reset"] {
+    width: 30%;
+}
+.app button[type="submit"] {
+  cursor: pointer;
+  border: none;
+  background: #4CAF50;
+  color: #FFF;
+  margin: 0 0 5px;
+  padding: 10px;
+  font-size: 15px;
+}
+.app button[type="reset"] {
+  cursor: pointer;
+  border: none;
+  border: 1px solid #4CAF50;
+  background:#FFF;
+  color: #4CAF50;
+  margin: 0 0 5px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.application button[type="submit"]:hover {
+  background: #43A047;
+  -webkit-transition: background 0.3s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.application button[type="submit"]:active {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+label{
+ font: 400 14px/16px "Roboto",Helvetica,Arial,sans-serif;
+ float: right;
+}

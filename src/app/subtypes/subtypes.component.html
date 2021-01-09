@@ -7,46 +7,49 @@
         <div class="col-md-4 text-right">
             <button class="cstbtn" (click)="addsubtype()">Add Subtype</button>
         </div>
-        <div class="row">
-            <p-table [columns]="cols" [value]="empSubTypes">
-                <ng-template pTemplate="header" let-columns >
-                    <tr>
-                        <th>S.No</th>
-                        <th *ngFor="let col of columns">
-                            {{col.header}}
-                        </th>
-                        <th>Actions</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-rowData let-columns="columns" let-i="rowIndex">
-                    <tr>
-                        <td>{{i+1}}</td>
-                        <td *ngFor="let col of columns">
-                           <span *ngIf="col.header=='Name'">{{rowData[col.field]}}</span>
-                           <span *ngIf="col.header=='Active'">
-                               <p-inputSwitch [(ngModel)]="rowData[col.field]" (onChange)="onActiveToggle($event.checked,rowData._id)"></p-inputSwitch>
-                            </span>  
-                           <span *ngIf="col.header=='Employment Type'">{{rowData[col.field].name}}</span>
-                        </td>
-                        <td>
-                            <button class="btn btn-info" (click)="onEdit(rowData)">Edit</button>
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </div>
+        <!-- <div class="row"> -->
+            <div class="col-md-12">
+                <p-table [columns]="cols" [value]="empSubTypes">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th>S.No</th>
+                            <th *ngFor="let col of columns">
+                                {{col.header}}
+                            </th>
+                            <th>Actions</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns" let-i="rowIndex">
+                        <tr>
+                            <td>{{i+1}}</td>
+                            <td *ngFor="let col of columns">
+                                <span *ngIf="col.header=='Name'">{{rowData[col.field]}}</span>
+                                <span *ngIf="col.header=='Active'">
+                                    <p-inputSwitch [(ngModel)]="rowData[col.field]" (onChange)="onActiveToggle($event.checked,rowData._id)"></p-inputSwitch>
+                                </span>
+                                <span *ngIf="col.header=='Employment Type'">{{rowData[col.field].name}}</span>
+                            </td>
+                            <td>
+                                <button class="btn btn-info" (click)="onEdit(rowData)">Edit</button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        <!-- </div> -->
     </div>
     <p-dialog header="Add Subtype" [(visible)]="display">
         <form class="subtype" *ngIf="display" [formGroup]="subTypesForm" (ngSubmit)="onSubmit(subTypesForm.value)">
             <div class="text-center justify-content-center">
-                <fieldset class="mb-2 mt-2">
-                    <input placeholder="Enter Subtype" formControlName="name" type="text">
-                </fieldset>
+               
                 <fieldset class="mb-2 mt-2">
                     <select formControlName="employmenttype">
                         <option value="" selected disabled>Select Employement Type</option>
                         <option *ngFor="let et of empTypes" [value]="et._id">{{et.name}}</option>
                     </select>
+                </fieldset>
+                <fieldset class="mb-2 mt-2">
+                    <input placeholder="Enter Subtype" formControlName="name" type="text">
                 </fieldset>
                 <fieldset>
                     <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">{{isEdit?'Update':'Submit'}}</button>

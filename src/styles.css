@@ -24,3 +24,19 @@ body { margin: 0; font-family: 'Roboto',  sans-serif !important; }
 .pointer{
     cursor: pointer;
 }
+h4{
+    font: 400 28px/16px "Roboto",
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+h5{
+    font: 400 24px/16px "Roboto",Helvetica,Arial,sans-serif;
+}
+.shape{
+    height: 1px;
+    /* margin: 0 auto 30px; */
+    position: relative;
+    width: 60px;
+    background-color: #f63854;
+}

@@ -5,7 +5,8 @@
 .subtype input[type="email"],
 .subtype input[type="tel"],
 .subtype input[type="url"],
-.subtype textarea {
+.subtype textarea,
+.subtype select {
   font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
   width: 100%;
   border: 1px solid #ccc;
@@ -18,7 +19,8 @@
 .subtype input[type="email"]:hover,
 .subtype input[type="tel"]:hover,
 .subtype input[type="url"]:hover,
-.subtype textarea:hover {
+.subtype textarea:hover,
+.subtype select:hover {
   -webkit-transition: border-color 0.3s ease-in-out;
   -moz-transition: border-color 0.3s ease-in-out;
   transition: border-color 0.3s ease-in-out;
@@ -26,7 +28,8 @@
 }
 
 .subtype input:focus,
-.subtype textarea:focus {
+.subtype textarea:focus,
+.subtype select:focus {
   outline: 0;
   border: 1px solid #aaa;
 }
