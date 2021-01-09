@@ -99,6 +99,9 @@ export class ApplicationComponent implements OnInit {
     // }
     this.sis.postApplication(formData).subscribe(res => {
       console.log(res);
+      this.form.reset();
+    },(err)=>{
+      console.log(err)
     })
   }
   onEmpType(e) {
