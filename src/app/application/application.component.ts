@@ -50,6 +50,7 @@ export class ApplicationComponent implements OnInit {
       highestQualification: ['', Validators.required],
       photoid_proof: ['', Validators.required],
       addressid_proof: ['', Validators.required],
+      gender:['', Validators.required],
       // seeker: [false],
       // provider: [false],
       address: this.fb.group({
